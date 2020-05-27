@@ -65,7 +65,7 @@ sub insert_message{
 	           VALUES(?,?,?,?)';
     my $sql_exe = $dbh->prepare($sql);
     if(!$sql_exe->execute($args->{timestamp},$args->{id},$args->{int_id},$args->{msg})){
-		print $err_fh 'Duplicate id: '.$args->{int_id}.'\n';
+		print $err_fh 'Duplicate id: '.$args->{int_id}.' Error: '.$DBI::errstr.' \n';
 	}
 }
 sub insert_log{
@@ -74,7 +74,7 @@ sub insert_log{
 	           VALUES(?,?,?,?)';
     my $sql_exe = $dbh->prepare($sql);
     if (!$sql_exe->execute($args->{timestamp},$args->{int_id},$args->{msg},$args->{addr})){
-		print $err_fh 'Duplicate id: '.$args->{int_id}.'\n';
+		print $err_fh 'Duplicate id: '.$args->{int_id}.' Error: '.$DBI::errstr.' \n';
 	}
 }
 $dbh = DBI->connect("DBI:mysql:database=Perl_task;host=localhost",
